@@ -1,0 +1,14 @@
+package co.grandcircus.GradingDatabase;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("grades")
+public class Grade {
+	@Id
+	private String id;
+	private String name;
+	private String type;
+	private double score;
+	private double total;
+	
+}
