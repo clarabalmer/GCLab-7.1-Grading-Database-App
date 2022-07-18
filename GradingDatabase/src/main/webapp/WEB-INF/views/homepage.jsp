@@ -24,7 +24,7 @@
 					<td><c:out value="${grade.type}"/></td>
 					<td><fmt:formatNumber type="number" pattern=".#" value="${grade.score}"/></td>
 					<td><fmt:formatNumber type="number" pattern=".#" value="${grade.total}"/></td>
-					<td><a href="/deleteGrade?id=${grade.id}">delete</a></td>
+					<td><a href="/confirmDelete?id=${grade.id}">delete</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

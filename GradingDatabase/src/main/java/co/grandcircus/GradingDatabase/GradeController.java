@@ -1,6 +1,7 @@
 package co.grandcircus.GradingDatabase;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,13 @@ public class GradeController {
 	public String gradeDelete(@RequestParam String id) {
 		repo.deleteById(id);
 		return "redirect:/gradeList";
+	}
+	@RequestMapping("/confirmDelete")
+	public String gradeDeleteConfirm(@RequestParam String id, Model model) {
+		Optional<Grade> optGrade = repo.findById(id);
+		Grade grade = optGrade.get();
+		model.addAttribute("grade", grade);
+		return "confirmDelete";
 	}
 	
 	@PostMapping("/addGradeConfirmation")
