@@ -11,25 +11,31 @@
 </head>
 <body>
 	<h1>Grades</h1>
-	<table class=table>
-		<thead>
-			<tr>
-				<th>Name</th><th>Type</th><th>Score</th><th>Total</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="grade" items="${grades}">
+	<c:if test="${grades.isEmpty()}">
+		<h2>There are no Grades to show</h2>
+	</c:if>
+	<c:if test="${!grades.isEmpty()}">
+		<table class=table>
+			<thead>
 				<tr>
-					<td><c:out value="${grade.name}"/></td>
-					<td><c:out value="${grade.type}"/></td>
-					<td><fmt:formatNumber type="number" pattern=".#" value="${grade.score}"/></td>
-					<td><fmt:formatNumber type="number" pattern=".#" value="${grade.total}"/></td>
-					<td><a href="/confirmDelete?id=${grade.id}">delete</a></td>
+					<th>Name</th><th>Type</th><th>Score</th><th>Total</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<h3>Total Score: <fmt:formatNumber type="number" pattern="##.#" value="${percentTotal}"/>%</h3>
+			</thead>
+			<tbody>
+				<c:forEach var="grade" items="${grades}">
+					<tr>
+						<td><c:out value="${grade.name}"/></td>
+						<td><c:out value="${grade.type}"/></td>
+						<td><fmt:formatNumber type="number" pattern=".#" value="${grade.score}"/></td>
+						<td><fmt:formatNumber type="number" pattern=".#" value="${grade.total}"/></td>
+						<td><a href="/confirmDelete?id=${grade.id}">delete</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<h3>Total Score: <fmt:formatNumber type="number" pattern="##.#" value="${percentTotal}"/>%</h3>
+	</c:if>
+	
 	<a href="/addAGrade">Add a Grade</a>
 </body>
 </html>
